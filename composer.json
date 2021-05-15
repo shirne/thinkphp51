@@ -1,6 +1,6 @@
 {
     "name": "shirne/thinkphp",
-    "description": "the new thinkphp framework",
+    "description": "a moditied version of thinkphp5.1",
     "type": "think-framework",
     "keywords": [
         "framework",
@@ -25,7 +25,7 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "topthink/think-installer": "2.*"
+        "shirne/think-installer": "2.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.0|^6.0",
