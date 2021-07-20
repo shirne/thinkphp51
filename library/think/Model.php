@@ -1091,7 +1091,11 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
     public function offsetGet($name)
     {
-        return $this->getAttr($name);
+        try {
+            return $this->getAttr($name);
+        } catch (InvalidArgumentException $e) {
+            return null;
+        }
     }
 
     /**
