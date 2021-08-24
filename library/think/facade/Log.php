@@ -16,25 +16,25 @@ use think\Facade;
 /**
  * @see \think\Log
  * @mixin \think\Log
- * @method \think\Log init(array $config = []) static 日志初始化
- * @method mixed getLog(string $type = '') static 获取日志信息
- * @method \think\Log record(mixed $msg, string $type = 'info', array $context = []) static 记录日志信息
- * @method \think\Log clear() static 清空日志信息
- * @method \think\Log key(string $key) static 当前日志记录的授权key
- * @method \think\Log close() static 关闭本次请求日志写入
- * @method bool check(array $config) static 检查日志写入权限
- * @method bool save() static 保存调试信息
- * @method void write(mixed $msg, string $type = 'info', bool $force = false) static 实时写入日志信息
- * @method void log(string $level,mixed $message, array $context = []) static 记录日志信息
- * @method void emergency(mixed $message, array $context = []) static 记录emergency信息
- * @method void alert(mixed $message, array $context = []) static 记录alert信息
- * @method void critical(mixed $message, array $context = []) static 记录critical信息
- * @method void error(mixed $message, array $context = []) static 记录error信息
- * @method void warning(mixed $message, array $context = []) static 记录warning信息
- * @method void notice(mixed $message, array $context = []) static 记录notice信息
- * @method void info(mixed $message, array $context = []) static 记录info信息
- * @method void debug(mixed $message, array $context = []) static 记录debug信息
- * @method void sql(mixed $message, array $context = []) static 记录sql信息
+ * @method static \think\Log init(array $config = []) 日志初始化
+ * @method static mixed getLog(string $type = '') 获取日志信息
+ * @method static \think\Log record(mixed $msg, string $type = 'info', array $context = []) 记录日志信息
+ * @method static \think\Log clear() 清空日志信息
+ * @method static \think\Log key(string $key) 当前日志记录的授权key
+ * @method static \think\Log close() 关闭本次请求日志写入
+ * @method static bool check(array $config) 检查日志写入权限
+ * @method static bool save() 保存调试信息
+ * @method static void write(mixed $msg, string $type = 'info', bool $force = false) 实时写入日志信息
+ * @method static void log(string $level,mixed $message, array $context = []) 记录日志信息
+ * @method static void emergency(mixed $message, array $context = []) 记录emergency信息
+ * @method static void alert(mixed $message, array $context = []) 记录alert信息
+ * @method static void critical(mixed $message, array $context = []) 记录critical信息
+ * @method static void error(mixed $message, array $context = []) 记录error信息
+ * @method static void warning(mixed $message, array $context = []) 记录warning信息
+ * @method static void notice(mixed $message, array $context = []) 记录notice信息
+ * @method static void info(mixed $message, array $context = []) 记录info信息
+ * @method static void debug(mixed $message, array $context = []) 记录debug信息
+ * @method static void sql(mixed $message, array $context = []) 记录sql信息
  */
 class Log extends Facade
 {

@@ -16,11 +16,11 @@ use think\Facade;
 /**
  * @see \think\Template
  * @mixin \think\Template
- * @method void assign(mixed $name, mixed $value = '') static 模板变量赋值
- * @method mixed get(string $name = '') static 获取模板变量
- * @method void fetch(string $template, array $vars = [], array $config = []) static 渲染模板文件
- * @method void display(string $content, array $vars = [], array $config = []) static 渲染模板内容
- * @method mixed layout(string $name, string $replace = '') static 设置模板布局
+ * @method static void assign(mixed $name, mixed $value = '') 模板变量赋值
+ * @method static mixed get(string $name = '') 获取模板变量
+ * @method static void fetch(string $template, array $vars = [], array $config = []) 渲染模板文件
+ * @method static void display(string $content, array $vars = [], array $config = []) 渲染模板内容
+ * @method static mixed layout(string $name, string $replace = '') 设置模板布局
  */
 class Template extends Facade
 {

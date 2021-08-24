@@ -16,16 +16,16 @@ use think\Facade;
 /**
  * @see \think\Lang
  * @mixin \think\Lang
- * @method mixed range($range = '') static 设定当前的语言
- * @method mixed set(mixed $name, string $value = null, string $range = '') static 设置语言定义
- * @method array load(mixed $file, string $range = '') static 加载语言定义
- * @method mixed get(string $name = null, array $vars = [], string $range = '') static 获取语言定义
- * @method mixed has(string $name, string $range = '') static 获取语言定义
- * @method string detect() static 自动侦测设置获取语言选择
- * @method void saveToCookie(string $lang = null) static 设置当前语言到Cookie
- * @method void setLangDetectVar(string $var) static 设置语言自动侦测的变量
- * @method void setLangCookieVar(string $var) static 设置语言的cookie保存变量
- * @method void setAllowLangList(array $list) static 设置允许的语言列表
+ * @method static mixed range($range = '') 设定当前的语言
+ * @method static mixed set(mixed $name, string $value = null, string $range = '') 设置语言定义
+ * @method static array load(mixed $file, string $range = '') 加载语言定义
+ * @method static mixed get(string $name = null, array $vars = [], string $range = '') 获取语言定义
+ * @method static mixed has(string $name, string $range = '') 获取语言定义
+ * @method static string detect() 自动侦测设置获取语言选择
+ * @method static void saveToCookie(string $lang = null) 设置当前语言到Cookie
+ * @method static void setLangDetectVar(string $var) 设置语言自动侦测的变量
+ * @method static void setLangCookieVar(string $var) 设置语言的cookie保存变量
+ * @method static void setAllowLangList(array $list) 设置允许的语言列表
  */
 class Lang extends Facade
 {

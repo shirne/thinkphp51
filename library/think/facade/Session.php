@@ -16,21 +16,21 @@ use think\Facade;
 /**
  * @see \think\Session
  * @mixin \think\Session
- * @method void init(array $config = []) static session初始化
- * @method bool has(string $name,string $prefix = null) static 判断session数据
- * @method mixed prefix(string $prefix = '') static 设置或者获取session作用域（前缀）
- * @method mixed get(string $name = '',string $prefix = null) static session获取
- * @method mixed pull(string $name,string $prefix = null) static session获取并删除
- * @method void push(string $key, mixed $value) static 添加数据到一个session数组
- * @method void set(string $name, mixed $value , string $prefix = null) static 设置session数据
- * @method void flash(string $name, mixed $value = null) static session设置 下一次请求有效
- * @method void flush() static 清空当前请求的session数据
- * @method void delete(string $name, string $prefix = null) static 删除session数据
- * @method void clear($prefix = null) static 清空session数据
- * @method void start() static 启动session
- * @method void destroy() static 销毁session
- * @method void pause() static 暂停session
- * @method void regenerate(bool $delete = false) static 重新生成session_id
+ * @method static void init(array $config = []) session初始化
+ * @method static bool has(string $name,string $prefix = null) 判断session数据
+ * @method static mixed prefix(string $prefix = '') 设置或者获取session作用域（前缀）
+ * @method static mixed get(string $name = '',string $prefix = null) session获取
+ * @method static mixed pull(string $name,string $prefix = null) session获取并删除
+ * @method static void push(string $key, mixed $value) 添加数据到一个session数组
+ * @method static void set(string $name, mixed $value , string $prefix = null) 设置session数据
+ * @method static void flash(string $name, mixed $value = null) session设置 下一次请求有效
+ * @method static void flush() 清空当前请求的session数据
+ * @method static void delete(string $name, string $prefix = null) 删除session数据
+ * @method static void clear($prefix = null) 清空session数据
+ * @method static void start() 启动session
+ * @method static void destroy() 销毁session
+ * @method static void pause() 暂停session
+ * @method static void regenerate(bool $delete = false) 重新生成session_id
  */
 class Session extends Facade
 {
