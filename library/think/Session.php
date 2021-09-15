@@ -527,13 +527,30 @@ class Session
     /**
      * 启动session
      * @access public
+     * @param string $sid
      * @return void
      */
-    public function start()
+    public function start($sid = null)
     {
+        if (!empty($sid)) {
+            if (!$this->valid_id($sid)) {
+                throw new Exception('invalid session id');
+            }
+            session_id($sid);
+        }
         session_start();
 
         $this->init = true;
+    }
+
+    /**
+     * 验证是否有效的sessionid
+     * @param string $sid 
+     * @return bool 
+     */
+    public function valid_id($sid)
+    {
+        return preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $sid) > 0;
     }
 
     /**

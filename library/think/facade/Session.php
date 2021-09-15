@@ -27,7 +27,7 @@ use think\Facade;
  * @method static void flush() 清空当前请求的session数据
  * @method static void delete(string $name, string $prefix = null) 删除session数据
  * @method static void clear($prefix = null) 清空session数据
- * @method static void start() 启动session
+ * @method static void start($sid = null) 启动session
  * @method static void destroy() 销毁session
  * @method static void pause() 暂停session
  * @method static void regenerate(bool $delete = false) 重新生成session_id
