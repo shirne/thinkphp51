@@ -22,6 +22,7 @@ class File
         'time_format' => 'c',
         'single'      => false,
         'file_size'   => 2097152,
+        'extension'   => '.log',
         'path'        => '',
         'apart_level' => [],
         'max_files'   => 0,
@@ -29,6 +30,8 @@ class File
     ];
 
     protected $app;
+
+    private $extension;
 
     // 实例化并传入参数
     public function __construct(App $app, $config = [])
@@ -44,6 +47,8 @@ class File
         } elseif (substr($this->config['path'], -1) != DIRECTORY_SEPARATOR) {
             $this->config['path'] .= DIRECTORY_SEPARATOR;
         }
+
+        $this->extension = $this->config['extension'];
     }
 
     /**
@@ -136,7 +141,7 @@ class File
     protected function getMasterLogFile()
     {
         if ($this->config['max_files']) {
-            $files = glob($this->config['path'] . '*.log');
+            $files = glob($this->config['path'] . '*' . $this->extension);
 
             try {
                 if (count($files) > $this->config['max_files']) {
@@ -151,12 +156,12 @@ class File
         if ($this->config['single']) {
             $name = is_string($this->config['single']) ? $this->config['single'] : 'single';
 
-            $destination = $this->config['path'] . $name . $cli . '.log';
+            $destination = $this->config['path'] . $name . $cli . $this->extension;
         } else {
             if ($this->config['max_files']) {
-                $filename = date('Ymd') . $cli . '.log';
+                $filename = date('Ymd') . $cli . $this->extension;
             } else {
-                $filename = date('Ym') . DIRECTORY_SEPARATOR . date('d') . $cli . '.log';
+                $filename = date('Ym') . DIRECTORY_SEPARATOR . date('d') . $cli . $this->extension;
             }
 
             $destination = $this->config['path'] . $filename;
@@ -184,7 +189,7 @@ class File
             $name = date('d');
         }
 
-        return $path . DIRECTORY_SEPARATOR . $name . '_' . $type . $cli . '.log';
+        return $path . DIRECTORY_SEPARATOR . $name . '_' . $type . $cli . $this->extension;
     }
 
     /**
@@ -197,7 +202,7 @@ class File
     {
         if (is_file($destination) && floor($this->config['file_size']) <= filesize($destination)) {
             try {
-                rename($destination, dirname($destination) . DIRECTORY_SEPARATOR . time() . '-' . basename($destination));
+                rename($destination, dirname($destination) . DIRECTORY_SEPARATOR . basename($destination,$this->extension) . '-' . time() . $this->extension);
             } catch (\Exception $e) {
             }
         }
