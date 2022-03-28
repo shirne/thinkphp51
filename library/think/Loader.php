@@ -57,17 +57,7 @@ class Loader
     // 获取应用根目录
     public static function getRootPath()
     {
-        if ('cli' == PHP_SAPI) {
-            $scriptName = realpath($_SERVER['argv'][0]);
-        } else {
-            $scriptName = $_SERVER['SCRIPT_FILENAME'];
-        }
-
-        $path = realpath(dirname($scriptName));
-
-        if (!is_file($path . DIRECTORY_SEPARATOR . 'think')) {
-            $path = dirname($path);
-        }
+        list($path, $_) = explode('thinkphp/library/think',str_replace('\\','/',__DIR__));
 
         return $path . DIRECTORY_SEPARATOR;
     }
