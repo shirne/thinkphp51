@@ -349,7 +349,7 @@ class Url
     // 匹配路由地址
     public function getRuleUrl($rule, &$vars = [], $allowDomain = '')
     {
-        $port = $this->app['request']->port();
+        $port = $this->config['hide_port'] ?'': $this->app['request']->port();
         foreach ($rule as $item) {
             list($url, $pattern, $domain, $suffix, $method) = $item;
 
