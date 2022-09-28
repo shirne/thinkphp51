@@ -195,12 +195,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
         if (empty($this->name)) {
             // 当前模型名
-            $name       = str_replace('\\', '/', static::class);
-            $this->name = basename($name);
-            if (Container::get('config')->get('class_suffix')) {
-                $suffix     = basename(dirname($name));
-                $this->name = substr($this->name, 0, -strlen($suffix));
-            }
+            $this->name = static::parseName( static::class);
         }
 
         if (is_null($this->autoWriteTimestamp)) {
@@ -229,6 +224,17 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
         // 执行初始化操作
         $this->initialize();
+    }
+
+    public static function parseName($class){
+        // 当前模型名
+        $name       = str_replace('\\', '/', $class);
+        $name = basename($name);
+        if (Container::get('config')->get('class_suffix')) {
+            $suffix     = basename(dirname($name));
+            $name = substr($name, 0, -strlen($suffix));
+        }
+        return $name;
     }
 
     /**
@@ -1074,17 +1080,17 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     }
 
     // ArrayAccess
-    public function offsetSet($name, $value)
+    public function offsetSet($name, $value) : void
     {
         $this->setAttr($name, $value);
     }
 
-    public function offsetExists($name)
+    public function offsetExists($name) : bool
     {
         return $this->__isset($name);
     }
 
-    public function offsetUnset($name)
+    public function offsetUnset($name) : void
     {
         $this->__unset($name);
     }
