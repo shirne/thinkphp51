@@ -150,7 +150,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
 
         $url = $path;
         if (!empty($parameters)) {
-            $url .= '?' . http_build_query($parameters, null, '&');
+            $url .= '?' . http_build_query($parameters, '', '&');
         }
 
         return $url . $this->buildFragment();
@@ -341,7 +341,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @return Traversable An instance of an object implementing <b>Iterator</b> or
      * <b>Traversable</b>
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->items->all());
     }
@@ -352,7 +352,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param  mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->items->offsetExists($offset);
     }
@@ -374,7 +374,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param  mixed $offset
      * @param  mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->items->offsetSet($offset, $value);
     }
@@ -386,7 +386,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @return void
      * @since  5.0.0
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         $this->items->offsetUnset($offset);
     }
@@ -394,7 +394,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
     /**
      * Count elements of an object
      */
-    public function count()
+    public function count(): int
     {
         return $this->items->count();
     }

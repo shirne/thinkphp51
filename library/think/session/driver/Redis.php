@@ -42,7 +42,7 @@ class Redis implements SessionHandlerInterface
      * @return bool
      * @throws Exception
      */
-    public function open($savePath, $sessName)
+    public function open($savePath, $sessName): bool
     {
         if (extension_loaded('redis')) {
             $this->handler = new \Redis;
@@ -78,7 +78,7 @@ class Redis implements SessionHandlerInterface
      * 关闭Session
      * @access public
      */
-    public function close()
+    public function close(): bool
     {
         $this->gc(ini_get('session.gc_maxlifetime'));
         $this->handler->close();
@@ -92,6 +92,7 @@ class Redis implements SessionHandlerInterface
      * @access public
      * @param  string $sessID
      * @return string
+     * [ReturnTypeWillChange]
      */
     public function read($sessID)
     {
@@ -105,7 +106,7 @@ class Redis implements SessionHandlerInterface
      * @param  string $sessData
      * @return bool
      */
-    public function write($sessID, $sessData)
+    public function write($sessID, $sessData): bool
     {
         if ($this->config['expire'] > 0) {
             $result = $this->handler->setex($this->config['session_name'] . $sessID, $this->config['expire'], $sessData);
@@ -122,7 +123,7 @@ class Redis implements SessionHandlerInterface
      * @param  string $sessID
      * @return bool
      */
-    public function destroy($sessID)
+    public function destroy($sessID): bool
     {
         return $this->handler->del($this->config['session_name'] . $sessID) > 0;
     }
@@ -131,7 +132,8 @@ class Redis implements SessionHandlerInterface
      * Session 垃圾回收
      * @access public
      * @param  string $sessMaxLifeTime
-     * @return bool
+     * @return int|false
+     * [ReturnTypeWillChange]
      */
     public function gc($sessMaxLifeTime)
     {

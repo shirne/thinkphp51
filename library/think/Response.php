@@ -100,7 +100,7 @@ class Response
      * @param  int    $code
      * @param  array  $header
      * @param  array  $options 输出参数
-     * @return Response
+     * @return Response|View|Xml|Redirect|Jump|Jsonp|Json|Download
      */
     public static function create($data = '', $type = '', $code = 200, array $header = [], $options = [])
     {

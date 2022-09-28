@@ -13,6 +13,7 @@ namespace think\db\builder;
 
 use think\db\Builder;
 use think\db\Query;
+use think\db\Expression;
 
 /**
  * Sqlite数据库驱动
