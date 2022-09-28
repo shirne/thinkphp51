@@ -21,7 +21,7 @@ use think\db\Query;
 class Mysql extends Connection
 {
 
-    protected $builder = '\\think\\db\\builder\\Mysql';
+    protected $builderClassName = '\\think\\db\\builder\\Mysql';
 
     /**
      * 初始化

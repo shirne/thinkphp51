@@ -19,7 +19,7 @@ use think\db\Connection;
  */
 class Pgsql extends Connection
 {
-    protected $builder = '\\think\\db\\builder\\Pgsql';
+    protected $builderClassName = '\\think\\db\\builder\\Pgsql';
 
     // PDO连接参数
     protected $params = [

@@ -12,6 +12,7 @@
 namespace think\db\connector;
 
 use PDO;
+use think\Container;
 use think\db\Connection;
 use think\db\Query;
 
@@ -28,7 +29,7 @@ class Sqlsrv extends Connection
         PDO::ATTR_STRINGIFY_FETCHES => false,
     ];
 
-    protected $builder = '\\think\\db\\builder\\Sqlsrv';
+    protected $builderClassName = '\\think\\db\\builder\\Sqlsrv';
 
     /**
      * 解析pdo连接的dsn信息
