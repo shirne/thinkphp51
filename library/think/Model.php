@@ -228,10 +228,10 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
     public static function parseName($class){
         // 当前模型名
-        $name       = str_replace('\\', '/', $class);
-        $name = basename($name);
+        $class       = str_replace('\\', '/', $class);
+        $name = basename($class);
         if (Container::get('config')->get('class_suffix')) {
-            $suffix     = basename(dirname($name));
+            $suffix     = basename(dirname($class));
             $name = substr($name, 0, -strlen($suffix));
         }
         return $name;
