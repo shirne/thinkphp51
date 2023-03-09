@@ -376,22 +376,22 @@ class Config implements \ArrayAccess
     }
 
     // ArrayAccess
-    public function offsetSet($name, $value)
+    public function offsetSet($name, $value): void
     {
         $this->set($name, $value);
     }
 
-    public function offsetExists($name)
+    public function offsetExists($name): bool
     {
         return $this->has($name);
     }
 
-    public function offsetUnset($name)
+    public function offsetUnset($name): void
     {
         $this->remove($name);
     }
 
-    public function offsetGet($name)
+    public function offsetGet($name): mixed
     {
         return $this->get($name);
     }

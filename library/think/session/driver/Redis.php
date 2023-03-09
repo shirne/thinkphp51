@@ -94,7 +94,7 @@ class Redis implements SessionHandlerInterface
      * @return string
      * [ReturnTypeWillChange]
      */
-    public function read($sessID)
+    public function read($sessID): string
     {
         return (string) $this->handler->get($this->config['session_name'] . $sessID);
     }
@@ -135,7 +135,7 @@ class Redis implements SessionHandlerInterface
      * @return int|false
      * [ReturnTypeWillChange]
      */
-    public function gc($sessMaxLifeTime)
+    public function gc($sessMaxLifeTime): bool
     {
         return true;
     }

@@ -195,7 +195,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
         if (empty($this->name)) {
             // 当前模型名
-            $this->name = static::parseName( static::class);
+            $this->name = static::parseName(static::class);
         }
 
         if (is_null($this->autoWriteTimestamp)) {
@@ -226,7 +226,8 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         $this->initialize();
     }
 
-    public static function parseName($class){
+    public static function parseName($class)
+    {
         // 当前模型名
         $class       = str_replace('\\', '/', $class);
         $name = basename($class);
@@ -338,7 +339,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
         // 全局作用域
         if (true === $useBaseQuery && method_exists($this, 'base')) {
-            call_user_func_array([$this, 'base'], [ & $query]);
+            call_user_func_array([$this, 'base'], [&$query]);
         }
 
         $globalScope = is_array($useBaseQuery) && $useBaseQuery ? $useBaseQuery : $this->globalScope;
@@ -370,7 +371,8 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
      * @return void
      */
     protected static function init()
-    {}
+    {
+    }
 
     /**
      * 数据自动完成
@@ -1080,22 +1082,22 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     }
 
     // ArrayAccess
-    public function offsetSet($name, $value) : void
+    public function offsetSet($name, $value): void
     {
         $this->setAttr($name, $value);
     }
 
-    public function offsetExists($name) : bool
+    public function offsetExists($name): bool
     {
         return $this->__isset($name);
     }
 
-    public function offsetUnset($name) : void
+    public function offsetUnset($name): void
     {
         $this->__unset($name);
     }
 
-    public function offsetGet($name)
+    public function offsetGet($name): mixed
     {
         try {
             return $this->getAttr($name);

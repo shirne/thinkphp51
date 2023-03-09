@@ -50,7 +50,7 @@ class Sqlite extends Builder
      * @param  Query     $query        查询对象
      * @return string
      */
-    protected function parseRand(Query $query)
+    protected function parseRand(Query $query): string
     {
         return 'RANDOM()';
     }

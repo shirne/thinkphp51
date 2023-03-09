@@ -437,7 +437,6 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
             $args = $constructor ? $this->bindParams($constructor, $vars) : [];
 
             return $reflect->newInstanceArgs($args);
-
         } catch (ReflectionException $e) {
             throw new ClassNotFoundException('class not exists: ' . $class, $class);
         }
@@ -576,34 +575,34 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
         $this->delete($name);
     }
 
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return $this->__isset($key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return $this->__get($key);
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $this->__set($key, $value);
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         $this->__unset($key);
     }
 
     //Countable
-    public function count()
+    public function count(): int
     {
         return count($this->instances);
     }
 
     //IteratorAggregate
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->instances);
     }

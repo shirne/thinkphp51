@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=8.0.0",
         "shirne/think-installer": "^2.0.6"
     },
     "require-dev": {

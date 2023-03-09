@@ -398,7 +398,6 @@ abstract class Builder
         }
 
         if ($value instanceof Expression) {
-
         } elseif (is_object($value) && method_exists($value, '__toString')) {
             // 对象数据写入
             $value = $value->__toString();
@@ -630,10 +629,9 @@ abstract class Builder
         }
 
         return $key . ' ' . substr($exp, 0, -4)
-        . $this->parseDateTime($query, $value[0], $field, $bindType)
-        . ' AND '
-        . $this->parseDateTime($query, $value[1], $field, $bindType);
-
+            . $this->parseDateTime($query, $value[0], $field, $bindType)
+            . ' AND '
+            . $this->parseDateTime($query, $value[1], $field, $bindType);
     }
 
     /**
@@ -825,6 +823,8 @@ abstract class Builder
         return empty($array) ? '' : ' ORDER BY ' . implode(',', $array);
     }
 
+    abstract protected function parseRand(Query $query): string;
+
     /**
      * orderField分析
      * @access protected
@@ -1005,7 +1005,8 @@ abstract class Builder
                 $this->parseComment($query, $options['comment']),
                 $this->parseForce($query, $options['force']),
             ],
-            $this->selectSql);
+            $this->selectSql
+        );
     }
 
     /**
@@ -1037,7 +1038,8 @@ abstract class Builder
                 implode(' , ', $values),
                 $this->parseComment($query, $options['comment']),
             ],
-            $this->insertSql);
+            $this->insertSql
+        );
     }
 
     /**
@@ -1087,7 +1089,8 @@ abstract class Builder
                 implode(' UNION ALL ', $values),
                 $this->parseComment($query, $options['comment']),
             ],
-            $this->insertAllSql);
+            $this->insertAllSql
+        );
     }
 
     /**
@@ -1143,7 +1146,8 @@ abstract class Builder
                 $this->parseLock($query, $options['lock']),
                 $this->parseComment($query, $options['comment']),
             ],
-            $this->updateSql);
+            $this->updateSql
+        );
     }
 
     /**
@@ -1168,6 +1172,7 @@ abstract class Builder
                 $this->parseLock($query, $options['lock']),
                 $this->parseComment($query, $options['comment']),
             ],
-            $this->deleteSql);
+            $this->deleteSql
+        );
     }
 }

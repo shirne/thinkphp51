@@ -363,7 +363,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param  mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->items->offsetGet($offset);
     }
@@ -441,5 +441,4 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
 
         return $result;
     }
-
 }

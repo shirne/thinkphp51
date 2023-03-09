@@ -85,7 +85,8 @@ class Mysql extends Builder
                 implode(' , ', $values),
                 $this->parseComment($query, $options['comment']),
             ],
-            $this->insertAllSql);
+            $this->insertAllSql
+        );
     }
 
     /**
@@ -125,13 +126,12 @@ class Mysql extends Builder
 
         $key = trim($key);
 
-        if(strpos($key, '->>') && false === strpos($key, '(')){
+        if (strpos($key, '->>') && false === strpos($key, '(')) {
             // JSON字段支持
             list($field, $name) = explode('->>', $key, 2);
 
             return $this->parseKey($query, $field, true) . '->>\'$' . (strpos($name, '[') === 0 ? '' : '.') . str_replace('->>', '.', $name) . '\'';
-        }
-        elseif (strpos($key, '->') && false === strpos($key, '(')) {
+        } elseif (strpos($key, '->') && false === strpos($key, '(')) {
             // JSON字段支持
             list($field, $name) = explode('->', $key, 2);
 
@@ -176,9 +176,8 @@ class Mysql extends Builder
      * @param  Query     $query        查询对象
      * @return string
      */
-    protected function parseRand(Query $query)
+    protected function parseRand(Query $query): string
     {
         return 'rand()';
     }
-
 }

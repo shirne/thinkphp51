@@ -416,7 +416,6 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
 
         $callback = $callback ?: function ($a, $b) {
             return $a == $b ? 0 : (($a < $b) ? -1 : 1);
-
         };
 
         uasort($items, $callback);
@@ -476,17 +475,17 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     }
 
     // ArrayAccess
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->items);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->items[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->items[] = $value;
@@ -495,19 +494,19 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
         }
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->items[$offset]);
     }
 
     //Countable
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
 
     //IteratorAggregate
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
