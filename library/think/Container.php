@@ -16,6 +16,7 @@ use ArrayIterator;
 use Closure;
 use Countable;
 use InvalidArgumentException;
+use Iterator;
 use IteratorAggregate;
 use ReflectionClass;
 use ReflectionException;
@@ -420,7 +421,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
      */
     public function invokeClass($class, $vars = [])
     {
-        try {
+        //try {
             $reflect = new ReflectionClass($class);
 
             if ($reflect->hasMethod('__make')) {
@@ -437,9 +438,9 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
             $args = $constructor ? $this->bindParams($constructor, $vars) : [];
 
             return $reflect->newInstanceArgs($args);
-        } catch (ReflectionException $e) {
-            throw new ClassNotFoundException('class not exists: ' . $class, $class);
-        }
+        //} catch (ReflectionException $e) {
+        //    throw new ClassNotFoundException('class not exists: ' . $class, $class);
+        //}
     }
 
     /**
@@ -575,12 +576,12 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
         $this->delete($name);
     }
 
-    public function offsetExists($key): bool
+    public function offsetExists(mixed $key): bool
     {
         return $this->__isset($key);
     }
 
-    public function offsetGet($key): mixed
+    public function offsetGet(mixed $key): mixed
     {
         return $this->__get($key);
     }
@@ -602,7 +603,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
     }
 
     //IteratorAggregate
-    public function getIterator(): ArrayIterator
+    public function getIterator(): Iterator
     {
         return new ArrayIterator($this->instances);
     }

@@ -391,7 +391,7 @@ class Config implements \ArrayAccess
         $this->remove($name);
     }
 
-    public function offsetGet($name): mixed
+    public function offsetGet(mixed $name):mixed
     {
         return $this->get($name);
     }
