@@ -697,7 +697,7 @@ class Request
                 foreach ($this->config['pathinfo_fetch'] as $type) {
                     if ($this->server($type)) {
                         $pathinfo = (0 === strpos($this->server($type), $this->server('SCRIPT_NAME'))) ?
-                        substr($this->server($type), strlen($this->server('SCRIPT_NAME'))) : $this->server($type);
+                            substr($this->server($type), strlen($this->server('SCRIPT_NAME'))) : $this->server($type);
                         break;
                     }
                 }
@@ -814,7 +814,7 @@ class Request
             return $this->server('REQUEST_METHOD') ?: 'GET';
         } elseif (!$this->method) {
             if (isset($_POST[$this->config['var_method']])) {
-                $method = strtolower($_POST[$this->config['var_method']]);
+                $method = strtolower($_POST[$this->config['var_method']] ?: '');
                 if (in_array($method, ['get', 'post', 'put', 'patch', 'delete'])) {
                     $this->method    = strtoupper($method);
                     $this->{$method} = $_POST;
@@ -1497,23 +1497,23 @@ class Request
     private function typeCast(&$data, $type)
     {
         switch (strtolower($type)) {
-            // 数组
+                // 数组
             case 'a':
                 $data = (array) $data;
                 break;
-            // 数字
+                // 数字
             case 'd':
                 $data = (int) $data;
                 break;
-            // 浮点
+                // 浮点
             case 'f':
                 $data = (float) $data;
                 break;
-            // 布尔
+                // 布尔
             case 'b':
-                $data = (boolean) $data;
+                $data = (bool) $data;
                 break;
-            // 字符串
+                // 字符串
             case 's':
                 if (is_scalar($data)) {
                     $data = (string) $data;
@@ -1621,7 +1621,7 @@ class Request
      */
     public function isSsl()
     {
-        if ($this->server('HTTPS') && ('1' == $this->server('HTTPS') || 'on' == strtolower($this->server('HTTPS')))) {
+        if ($this->server('HTTPS') && ('1' == $this->server('HTTPS') || 'on' == strtolower($this->server('HTTPS') ?: ''))) {
             return true;
         } elseif ('https' == $this->server('REQUEST_SCHEME')) {
             return true;
@@ -1655,7 +1655,7 @@ class Request
     public function isAjax($ajax = false)
     {
         $value  = $this->server('HTTP_X_REQUESTED_WITH');
-        $result = 'xmlhttprequest' == strtolower($value) ? true : false;
+        $result = 'xmlhttprequest' == strtolower($value ?: '') ? true : false;
 
         if (true === $ajax) {
             return $result;
