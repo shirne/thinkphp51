@@ -57,7 +57,7 @@ class Loader
     // 获取应用根目录
     public static function getRootPath()
     {
-        list($path, $_) = explode('thinkphp/library/think',str_replace('\\','/',__DIR__));
+        list($path, $_) = explode('thinkphp/library/think', str_replace('\\', '/', __DIR__));
 
         return $path . DIRECTORY_SEPARATOR;
     }
@@ -164,7 +164,7 @@ class Loader
         if (false !== $pos = strrpos($class, '\\')) {
             // namespaced class name
             $logicalPathPsr0 = substr($logicalPathPsr4, 0, $pos + 1)
-            . strtr(substr($logicalPathPsr4, $pos + 1), '_', DIRECTORY_SEPARATOR);
+                . strtr(substr($logicalPathPsr4, $pos + 1), '_', DIRECTORY_SEPARATOR);
         } else {
             // PEAR-like class name
             $logicalPathPsr0 = strtr($class, '_', DIRECTORY_SEPARATOR) . '.php';
@@ -361,6 +361,9 @@ class Loader
      */
     public static function parseName($name, $type = 0, $ucfirst = true)
     {
+        if (empty($name)) {
+            return '';
+        }
         if ($type) {
             $name = preg_replace_callback('/_([a-zA-Z])/', function ($match) {
                 return strtoupper($match[1]);
