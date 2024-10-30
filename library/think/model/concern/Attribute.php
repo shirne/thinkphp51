@@ -443,7 +443,7 @@ trait Attribute
                 $value = $this->formatDateTime('Y-m-d H:i:s.u', $value);
                 break;
             case 'object':
-                if (is_object($value)) {
+                if (is_object($value) || is_array($value)) {
                     $value = json_encode($value, JSON_FORCE_OBJECT);
                 }
                 break;
