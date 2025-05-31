@@ -326,7 +326,6 @@ class Url
             $scheme = '';
         } else {
             $scheme = $this->app['request']->isSsl() || $this->config['is_https'] ? 'https://' : 'http://';
-
         }
 
         return $scheme . $domain;
@@ -349,7 +348,7 @@ class Url
     // 匹配路由地址
     public function getRuleUrl($rule, &$vars = [], $allowDomain = '')
     {
-        $port = $this->config['hide_port'] ?'': $this->app['request']->port();
+        $port = empty($this->config['hide_port']) ? '' : $this->app['request']->port();
         foreach ($rule as $item) {
             list($url, $pattern, $domain, $suffix, $method) = $item;
 
